@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ellena Fit Ltd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@300;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Barlow+Condensed:wght@300;600;700&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap">
+<style>
+html,body{margin:0;padding:0}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%}
+/* Shared parts for the Arena and Studio website designs (components/site/kit.tsx).
+   Each design's root has class .sk and sets --p, --s, --ink, --mist, --line, --muted. */
+
+.sk{container-type:inline-size;position:relative;overflow:clip;font-family:'Figtree','Helvetica Neue',sans-serif;font-size:16px;line-height:1.55}
+.sk *{box-sizing:border-box}
+.sk :where(h1,h2,h3,p,blockquote,figure,ol,ul){margin:0}
+.sk :where(ol,ul){list-style:none;padding:0}
+.sk button{font-family:inherit}
+
+/* Images and stand-ins */
+.sk-img{display:block;width:100%;height:100%;object-fit:cover}
+.sk-ph{display:grid;place-items:center;background:repeating-linear-gradient(135deg,var(--ph-a,var(--mist)) 0 16px,var(--ph-b,color-mix(in srgb,var(--s) 22%,#fff)) 16px 32px)}
+.sk-ph span{font-size:13px;font-weight:600;background:#fff;color:#141414;padding:6px 12px;border-radius:999px;text-align:center;margin:0 10px}
+.sk-stars{color:#FFC64A;letter-spacing:2px}
+.sk-logo-img{height:30px;width:auto;max-width:170px;object-fit:contain;display:block}
+.sk-logo-text{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);font-size:22px;letter-spacing:-.02em;white-space:nowrap}
+
+/* Marquees */
+.sk-marquee{overflow:hidden;display:flex}
+.sk-track{display:flex;flex:none;animation:sk-marq var(--dur,38s) linear infinite}
+.sk-track.rev{animation-direction:reverse}
+.sk-marquee:hover .sk-track{animation-play-state:paused}
+.sk-run{display:flex;flex:none;align-items:center}
+@keyframes sk-marq{to{transform:translateX(-50%)}}
+
+/* Phones whose screens scroll */
+.sk-phone{position:relative;aspect-ratio:9/19;border-radius:40px;background:#141418;padding:9px;box-shadow:0 30px 60px rgba(0,0,0,.28),inset 0 0 0 1.5px rgba(255,255,255,.16)}
+.sk-notch{position:absolute;top:17px;left:50%;transform:translateX(-50%);width:30%;height:16px;border-radius:999px;background:#000;z-index:2}
+.sk-screen{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#fff}
+.sk-scroll{position:absolute;left:0;top:0;width:100%;height:auto;animation:sk-screen var(--dur,16s) ease-in-out infinite alternate}
+.sk-phone:hover .sk-scroll{animation-play-state:paused}
+@keyframes sk-screen{0%,8%{top:0;transform:translateY(0)}92%,100%{top:100%;transform:translateY(-100%)}}
+.sk-mock{min-height:130%;background:linear-gradient(180deg,color-mix(in srgb,var(--s) 14%,#fff),#fff 40%);padding:46px 12px 12px;display:flex;flex-direction:column;gap:9px;color:#141414}
+.sk-mock-top{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.sk-mock-top span{width:22px;height:22px;border-radius:50%;background:#ececef}
+.sk-mock-ring{--n:70%;align-self:center;width:58%;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--p) var(--n),#ececef 0);display:grid;place-items:center;position:relative;margin:4px 0 6px}
+.sk-mock-ring::before{content:"";position:absolute;inset:11%;border-radius:50%;background:#fff}
+.sk-mock-ring b,.sk-mock-ring small{position:relative;grid-area:1/1}
+.sk-mock-ring b{font-size:17px;margin-top:-10px}
+.sk-mock-ring small{font-size:8.5px;margin-top:20px;opacity:.6}
+.sk-mock-card{display:flex;gap:8px;align-items:center;background:#fff;border-radius:12px;padding:9px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.sk-mock-card i{width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--s) 40%,#fff);flex:none}
+.sk-mock-card.hi{background:var(--p);color:#fff}
+.sk-mock-card.hi i{background:rgba(255,255,255,.3)}
+.sk-mock-card b{display:block;font-size:10.5px;line-height:1.2}
+.sk-mock-card small{font-size:9px;opacity:.65}
+
+/* Scroll reveal: only hides things once the script is running */
+.sk-armed .sk-rv{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.sk-armed .sk-rv.in{opacity:1;transform:none}
+.sk-armed .sk-rv.d1{transition-delay:.1s}
+.sk-armed .sk-rv.d2{transition-delay:.2s}
+.sk-armed .sk-rv.d3{transition-delay:.3s}
+
+@media (prefers-reduced-motion: reduce){
+  .sk *,.sk *::before,.sk *::after{animation:none!important;transition:none!important}
+}
+
+/* "Studio" website design (components/site/StudioSite.tsx). Light, warm, editorial.
+   Brand variables: --p, --s, --ink, --on-p, --on-s, and the headline face --fd/--fs/--fw/--tt.
+   Italic serif accents always use --fa. */
+
+.st{
+  container-name:st;
+  --cream:color-mix(in srgb,var(--s) 9%,#fffaf3);
+  --sand:color-mix(in srgb,var(--s) 22%,#f8efe4);
+  --mist:var(--sand);
+  --line:color-mix(in srgb,var(--ink) 12%,transparent);
+  --muted:color-mix(in srgb,var(--ink) 66%,var(--cream));
+  --ph-a:var(--sand);--ph-b:color-mix(in srgb,var(--s) 30%,#fff);
+  background:var(--cream);color:var(--ink);
+}
+.st-wrap{max-width:1200px;margin:0 auto;padding-inline:48px;position:relative}
+
+/* Type: an italic serif line, then the brand face */
+.st-h{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);text-transform:var(--tt);font-size:58px;line-height:1;letter-spacing:-.025em;text-wrap:balance}
+.st-h > *{display:block}
+.st-l1{font-family:var(--fa);font-style:italic;font-weight:400;font-stretch:100%;text-transform:none;letter-spacing:-.01em;color:var(--p)}
+.st-h1{font-size:96px;line-height:.96;letter-spacing:-.035em}
+.st-h1 .st-l1{animation:st-in 1s cubic-bezier(.2,.8,.2,1) both}
+.st-h1 .st-l2{animation:st-in 1s cubic-bezier(.2,.8,.2,1) .15s both}
+@keyframes st-in{from{opacity:0;transform:translateY(30px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.st-kicker{font-family:var(--fa);font-style:italic;font-size:19px;color:var(--p);margin-bottom:12px}
+.st-p{font-size:16.5px;color:var(--muted);margin-top:16px;max-width:52ch}
+.st-lead{font-size:19px;color:var(--ink)}
+.st-sub{font-size:19px;line-height:1.55;margin-top:22px;max-width:48ch;color:var(--muted)}
+.st-small{font-size:13.5px;margin-top:14px;color:var(--muted)}
+.st-intro{font-size:17px;color:var(--muted);max-width:46ch}
+.st-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px;margin-bottom:52px}
+.st-head-c{flex-direction:column;align-items:center;text-align:center;gap:14px}
+.st-head-c .st-kicker{margin-bottom:0}
+
+/* Buttons: soft pills that lift and grow a glow */
+.st-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 30px;border-radius:999px;font-weight:700;font-size:15.5px;background:var(--p);color:var(--on-p);border:1.5px solid var(--p);cursor:pointer;white-space:nowrap;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s,color .3s}
+.st-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 30px color-mix(in srgb,var(--p) 35%,transparent)}
+.st-btn:focus-visible,.st button:focus-visible,.st input:focus-visible{outline:3px solid color-mix(in srgb,var(--p) 50%,transparent);outline-offset:3px}
+.st-btn-sm{padding:11px 20px;font-size:14px}
+.st-btn-block{width:100%}
+.st-btn-line{background:transparent;color:var(--ink);border-color:color-mix(in srgb,var(--ink) 30%,transparent)}
+.st-btn-line:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);box-shadow:none}
+.st-btn-ink{background:var(--ink);border-color:var(--ink);color:#fff}
+.st-btn-ink:hover{box-shadow:0 14px 30px rgba(0,0,0,.25)}
+button.st-btn:disabled{opacity:.6}
+.st-link{font-weight:700;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;border-bottom:1.5px solid currentColor;padding-bottom:2px}
+.st-link i{font-style:normal;transition:transform .3s}
+
+/* Bar and nav */
+.st-bar{background:var(--ink);color:var(--cream);font-size:13.5px;padding:9px 0}
+.st-bar-i{padding:0 30px;font-family:var(--fa);font-style:italic}
+.st-nav{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:16px 48px;background:color-mix(in srgb,var(--cream) 85%,transparent);backdrop-filter:blur(14px)}
+.st-nav-r{display:flex;justify-content:flex-end;align-items:center;gap:26px}
+.st-logo{display:flex;align-items:center;justify-content:center}
+.st-links{display:flex;gap:26px;font-size:14.5px;font-weight:600}
+.st-links span{cursor:pointer;background:linear-gradient(var(--p),var(--p)) no-repeat 0 100%/0 1.5px;transition:background-size .35s;padding-bottom:3px}
+.st-links span:hover{background-size:100% 1.5px}
+
+/* Hero over drifting, shape-changing blobs */
+.st-hero{position:relative;isolation:isolate;padding:70px 0 0;overflow:hidden;text-align:center}
+.st-blobs{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.st-blobs i{position:absolute;width:44%;aspect-ratio:1;filter:blur(50px);opacity:.5;animation:st-morph 18s ease-in-out infinite alternate,st-drift 26s ease-in-out infinite alternate}
+.st-blobs i:nth-child(1){background:color-mix(in srgb,var(--p) 55%,#fff);left:-8%;top:-10%}
+.st-blobs i:nth-child(2){background:color-mix(in srgb,var(--s) 80%,#fff);right:-10%;top:16%;animation-duration:22s,30s;animation-direction:alternate-reverse}
+.st-blobs i:nth-child(3){background:color-mix(in srgb,var(--p) 30%,var(--s));left:30%;bottom:-20%;width:36%;opacity:.4;animation-duration:20s,34s}
+@keyframes st-morph{0%{border-radius:42% 58% 63% 37%/41% 44% 56% 59%}50%{border-radius:68% 32% 41% 59%/56% 63% 37% 44%}100%{border-radius:35% 65% 28% 72%/68% 34% 66% 32%}}
+@keyframes st-drift{to{transform:translate(18%,14%) rotate(40deg) scale(1.15)}}
+.st-hero-copy{display:flex;flex-direction:column;align-items:center}
+.st-hero-copy .st-sub{margin-inline:auto}
+.st-proof{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;padding:6px 14px 6px 6px;border-radius:999px;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.06);margin-bottom:26px}
+.st-faces{display:flex}
+.st-faces i{width:26px;height:26px;border-radius:50%;border:2px solid #fff;margin-left:-8px;background:var(--p)}
+.st-faces i:first-child{margin-left:0;background:var(--s)}
+.st-faces i:last-child{background:var(--ink)}
+.st-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.st-hero-art{position:relative;height:620px;margin-top:60px}
+.st-arch{overflow:hidden;border-radius:999px 999px 26px 26px}
+.st-arch .sk-img{transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.st-arch:hover .sk-img{transform:scale(1.05)}
+.st-arch-l,.st-arch-r{position:absolute;bottom:0;width:30%;height:82%}
+.st-arch-l{left:6%;transform:rotate(-4deg);transform-origin:bottom}
+.st-arch-r{right:6%;height:70%;transform:rotate(4deg);transform-origin:bottom}
+.st-hero-phone{position:absolute;left:50%;bottom:-70px;width:300px;transform:translateX(-50%);z-index:2;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.st-hero-phone:hover{transform:translateX(-50%) translateY(-12px)}
+.st-hero-phone .sk-phone{box-shadow:0 40px 90px rgba(0,0,0,.25),inset 0 0 0 1.5px rgba(255,255,255,.16)}
+.st-float{position:absolute;z-index:3;background:#fff;color:var(--ink);font-size:14px;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.1);animation:st-bob 5s ease-in-out infinite;white-space:nowrap;transition:transform .3s,background .3s}
+.st-float:hover{background:var(--p);color:var(--on-p)}
+.st-float.f0{left:27%;top:14%}
+.st-float.f1{right:24%;top:38%;animation-delay:-2s}
+.st-float.f2{left:22%;bottom:22%;animation-delay:-3.5s}
+@keyframes st-bob{50%{transform:translateY(-12px)}}
+.st-spin{position:absolute;right:2%;top:-6%;width:120px;height:120px;z-index:3;display:grid;place-items:center}
+.st-spin svg{position:absolute;inset:0;width:100%;height:100%;animation:st-turn 18s linear infinite}
+.st-spin text{font:700 10.5px 'Figtree',sans-serif;letter-spacing:2px;fill:var(--ink)}
+.st-spin b{width:54px;height:54px;border-radius:50%;background:var(--p);color:var(--on-p);display:grid;place-items:center;font-size:20px;transition:transform .4s}
+.st-spin:hover b{transform:rotate(-45deg) scale(1.1)}
+@keyframes st-turn{to{transform:rotate(360deg)}}
+
+/* Band */
+.st-band{background:var(--p);color:var(--on-p);padding:22px 0;position:relative;z-index:1}
+.st-band-i{font-family:var(--fa);font-style:italic;font-size:30px;display:inline-flex;align-items:center;gap:30px;padding-right:30px;white-space:nowrap}
+.st-band-i b{font-size:20px;font-style:normal;opacity:.7}
+
+/* Numbers in circles with a turning dashed ring */
+.st-stats{padding:90px 0 20px}
+.st-stats-row{display:flex;flex-wrap:wrap;justify-content:center;gap:28px 46px}
+.st-stat{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;width:180px}
+.st-stat-c{position:relative;width:150px;height:150px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.05);transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
+.st-stat-c::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--p) 60%,transparent);animation:st-turn 30s linear infinite}
+.st-stat:hover .st-stat-c{transform:scale(1.06);background:var(--p);color:var(--on-p)}
+.st-stat b{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);font-size:38px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.st-stat > span{font-size:14.5px;color:var(--muted);font-weight:600}
+
+/* Sections */
+.st-sec{padding:110px 0}
+.st-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.st-split .st-btn{margin-top:30px}
+.st-about-art,.st-coach-art{position:relative}
+.st-about-img,.st-coach-img{aspect-ratio:4/5}
+.st-sticker{position:absolute;right:-10px;bottom:40px;background:var(--s);color:var(--on-s);font-family:var(--fa);font-style:italic;font-size:19px;padding:14px 20px;border-radius:18px;transform:rotate(-5deg);box-shadow:0 12px 30px rgba(0,0,0,.1);max-width:70%;transition:transform .4s}
+.st-sticker:hover{transform:rotate(0) scale(1.05)}
+.st-sticker-r{right:auto;left:-10px;transform:rotate(4deg)}
+
+/* Features around a phone */
+.st-orbit{background:#fff;border-radius:48px;margin-inline:16px}
+.st-orbit-grid{display:grid;grid-template-columns:1fr minmax(240px,300px) 1fr;gap:40px;align-items:center}
+.st-col{display:flex;flex-direction:column;gap:16px}
+.st-fc{--mx:50%;--my:50%;text-align:left;border:1.5px solid var(--line);border-radius:24px;padding:20px 22px;background:radial-gradient(circle at var(--mx) var(--my),color-mix(in srgb,var(--p) 10%,transparent),transparent 60%),var(--cream);color:var(--ink);cursor:pointer;display:grid;grid-template-columns:44px 1fr;column-gap:14px;row-gap:4px;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.st-fc-i{grid-row:1/3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--s) 50%,#fff);font-size:18px;transition:background .3s,color .3s,transform .5s}
+.st-fc-t{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);text-transform:var(--tt);font-size:19px;line-height:1.15}
+.st-fc-b{font-size:14.5px;color:var(--muted)}
+.st-fc:hover{transform:translateY(-3px)}
+.st-fc.on{border-color:var(--p);box-shadow:0 16px 40px color-mix(in srgb,var(--p) 18%,transparent)}
+.st-fc.on .st-fc-i{background:var(--p);color:var(--on-p);transform:rotate(360deg)}
+.st-orbit-phone{position:relative;aspect-ratio:9/19}
+.st-halo{position:absolute;inset:-12%;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--p) 50%,transparent);animation:st-turn 40s linear infinite}
+.st-halo::before{content:"";position:absolute;top:8%;left:12%;width:14px;height:14px;border-radius:50%;background:var(--p)}
+.st-slide{position:absolute;inset:0;opacity:0;transform:scale(.94);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.st-slide.on{opacity:1;transform:none}
+
+/* A row of phones */
+.st-reel{overflow:hidden}
+.st-phones{padding:20px 0 40px}
+.st-phones .sk-run{gap:28px;padding-right:28px;align-items:flex-start}
+.st-reel-p{width:220px;flex:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.st-reel-p.r1{margin-top:40px}
+.st-reel-p.r2{margin-top:16px}
+.st-reel-p:hover{transform:translateY(-14px) rotate(-2deg)}
+.st-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.st-pill{display:inline-flex;gap:8px;align-items:center;padding:10px 18px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:14.5px;font-weight:600;transition:transform .3s,border-color .3s}
+.st-pill i{font-style:normal;color:var(--p)}
+.st-pill:hover{transform:translateY(-3px) rotate(-1.5deg);border-color:var(--p)}
+
+/* Programmes */
+.st-progs{background:var(--sand)}
+.st-prog-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px}
+.st-prog{position:relative;display:flex;flex-direction:column;gap:6px}
+.st-prog-img{aspect-ratio:4/5;margin-bottom:12px;transition:border-radius .6s cubic-bezier(.2,.8,.2,1)}
+.st-prog:hover .st-prog-img{border-radius:26px}
+.st-prog:hover .sk-img{transform:scale(1.06)}
+.st-prog:hover .st-link i{transform:translateX(5px)}
+.st-tag{position:absolute;top:16px;left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.st-meta{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--p)}
+.st-prog h3{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);text-transform:var(--tt);font-size:28px;line-height:1.05}
+.st-prog-b{font-size:15px;color:var(--muted)}
+.st-prog-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.st-prog-foot b{font-family:var(--fa);font-style:italic;font-weight:500;font-size:26px}
+
+/* Results */
+.st-story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:60px}
+.st-polas{position:relative;height:500px}
+.st-pola{position:absolute;width:48%;background:#fff;padding:12px 12px 0;box-shadow:0 20px 40px rgba(0,0,0,.12);transition:transform .5s cubic-bezier(.2,.8,.2,1),z-index 0s}
+.st-pola .sk-img{aspect-ratio:3/4;height:auto}
+.st-pola figcaption{font-family:var(--fa);font-style:italic;font-size:18px;text-align:center;padding:12px 0 14px}
+.st-pola.a{left:2%;top:4%;transform:rotate(-7deg)}
+.st-pola.b{right:2%;top:12%;transform:rotate(5deg)}
+.st-pola:hover{transform:rotate(0) scale(1.04);z-index:2}
+.st-story-q p{font-family:var(--fa);font-style:italic;font-size:34px;line-height:1.2;margin:16px 0 18px}
+.st-story-q cite{font-style:normal;font-weight:700;font-size:15px}
+.st-reviews{columns:3;column-gap:22px}
+.st-review{break-inside:avoid;margin-bottom:22px;background:#fff;border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:12px;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.st-review:nth-child(3n+2){background:color-mix(in srgb,var(--s) 35%,#fff)}
+.st-review:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 20px 40px rgba(0,0,0,.08)}
+.st-review blockquote{font-size:16.5px}
+.st-review figcaption{font-size:14px;color:var(--muted)}
+.st-review figcaption b{color:var(--ink)}
+
+/* Coach */
+.st-coach{background:#fff}
+.st-coach-stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:30px}
+.st-coach-stats b{display:block;font-family:var(--fa);font-style:italic;font-weight:500;font-size:38px;line-height:1;color:var(--p)}
+.st-coach-stats span{font-size:13.5px;color:var(--muted)}
+.st-coach .st-btn{margin-top:30px}
+
+/* Pricing */
+.st-pricing{background:linear-gradient(180deg,var(--cream),var(--sand))}
+.st-plans{display:grid;gap:24px;align-items:center}
+.st-plans.n1{grid-template-columns:minmax(0,420px);justify-content:center}
+.st-plans.n2{grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin:0 auto}
+.st-plans.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.st-plan{--mx:50%;--my:0%;position:relative;border-radius:32px;padding:38px 32px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;background:radial-gradient(circle at var(--mx) var(--my),color-mix(in srgb,var(--p) 10%,transparent),transparent 55%),#fff;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.st-plan:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(0,0,0,.08)}
+.st-plan.pop{background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.12),transparent 55%),var(--ink);color:#fff;padding-block:52px 40px}
+.st-plan-tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--s);color:var(--on-s);font-family:var(--fa);font-style:italic;font-size:16px;padding:6px 18px;border-radius:999px;white-space:nowrap}
+.st-plan-name{font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+.st-price b{font-family:var(--fd);font-stretch:var(--fs);font-weight:var(--fw);font-size:60px;line-height:1.05;letter-spacing:-.03em}
+.st-period{font-size:14px;opacity:.7}
+.st-perday{margin-top:10px;font-size:13.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:color-mix(in srgb,var(--p) 14%,#fff);color:var(--ink)}
+.st-plan.pop .st-perday{background:var(--p);color:var(--on-p)}
+.st-plan .st-btn{margin-top:22px}
+.st-plan.pop .st-btn-line,.st-plan.pop .st-btn{background:var(--p);border-color:var(--p);color:var(--on-p)}
+.st-plan-inc{font-size:13.5px;opacity:.72;margin-top:12px}
+.st-plans-todo .st-plan{border:1.5px dashed var(--line);background:transparent}
+.st-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:34px;font-size:14.5px;font-weight:600;color:var(--muted)}
+
+/* FAQ */
+.st-faq-wrap{max-width:860px}
+.st-q{background:#fff;border-radius:22px;margin-bottom:12px;transition:box-shadow .3s}
+.st-q:hover{box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.st-q button{width:100%;display:flex;justify-content:space-between;gap:20px;align-items:center;background:none;border:0;padding:22px 26px;text-align:left;font-size:17.5px;font-weight:600;line-height:1.35;color:var(--ink);cursor:pointer}
+.st-q i{flex:none;width:32px;height:32px;border-radius:50%;background:var(--sand);position:relative;transition:background .3s,transform .4s}
+.st-q i::before,.st-q i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
+.st-q i::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .4s}
+.st-q.open i{background:var(--p);transform:rotate(180deg)}
+.st-q.open i::before,.st-q.open i::after{background:var(--on-p)}
+.st-q.open i::after{transform:translate(-50%,-50%) rotate(0)}
+.st-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.st-a p{overflow:hidden;color:var(--muted);font-size:16px;padding-inline:26px}
+.st-q.open .st-a{grid-template-rows:1fr}
+.st-q.open .st-a p{padding-bottom:24px}
+
+/* Closing panel */
+.st-final{padding:30px 0 100px}
+.st-panel{position:relative;isolation:isolate;overflow:hidden;border-radius:40px;background:var(--p);color:var(--on-p);padding:90px 64px 70px}
+.st-blobs-in i{opacity:.35;mix-blend-mode:soft-light}
+.st-blobs-in i:nth-child(1){background:#fff}
+.st-wave{position:absolute;left:0;top:0;width:200%;height:46px;fill:var(--cream);animation:st-wave 9s linear infinite}
+@keyframes st-wave{to{transform:translateX(-50%)}}
+.st-panel .st-l1,.st-panel .st-kicker{color:inherit}
+.st-panel .st-sub,.st-panel .st-small{color:inherit;opacity:.85}
+.st-final-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.st-final-join{text-align:center;display:flex;flex-direction:column;align-items:center}
+.st-final-join .st-btn{margin-top:28px}
+.st-capture{background:#fff;color:var(--ink);border-radius:28px;padding:30px;display:flex;flex-direction:column;gap:12px;box-shadow:0 30px 60px rgba(0,0,0,.15)}
+.st-capture label{font-weight:700;font-size:14px}
+.st-capture input{border:1.5px solid var(--line);background:var(--cream);border-radius:999px;padding:15px 20px;font:16px inherit;color:var(--ink);transition:border-color .2s}
+.st-capture input:focus{outline:none;border-color:var(--p)}
+.st-capture .st-small{color:var(--muted);opacity:1}
+.st-thanks{font-size:18px;font-weight:600}
+
+/* Footer */
+.st-foot{padding:10px 0 26px;font-size:14.5px;color:var(--muted);overflow:hidden}
+.st-foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+.st-foot .st-logo{justify-content:flex-start;color:var(--ink)}
+.st-foot-brand p{margin-top:12px;max-width:36ch}
+.st-foot-links{display:flex;flex-wrap:wrap;gap:12px 26px;font-weight:600}
+.st-foot-links span{cursor:pointer;transition:color .2s}
+.st-foot-links span:hover{color:var(--p)}
+.st-word{font-family:var(--fa);font-style:italic;font-weight:500;line-height:1;text-align:center;white-space:nowrap;color:var(--ink);margin:50px 0 10px;letter-spacing:-.03em;background:linear-gradient(90deg,var(--ink),var(--p),var(--ink)) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:st-sheen 8s linear infinite}
+@keyframes st-sheen{to{background-position:-200% 0}}
+.st-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-top:18px;border-top:1px solid var(--line);font-size:13px}
+
+/* Tablet */
+@container st (max-width: 1000px){
+  .st-wrap{padding-inline:30px}
+  .st-nav{padding:14px 30px;grid-template-columns:auto 1fr}
+  .st-nav > .st-links,.st-nav-r .st-links{display:none}
+  .st-logo{justify-content:flex-start}
+  .st-h{font-size:46px}
+  .st-h1{font-size:68px}
+  .st-split,.st-story,.st-final-grid{grid-template-columns:1fr;gap:46px}
+  .st-orbit-grid{grid-template-columns:1fr 1fr}
+  .st-orbit-phone{grid-row:1;grid-column:1/-1;width:260px;margin:0 auto 30px}
+  .st-plans.n3{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .st-reviews{columns:2}
+  .st-hero-art{height:540px}
+  .st-arch-l,.st-arch-r{width:34%}
+  .st-float.f0{left:6%}
+  .st-float.f1{right:4%}
+}
+
+/* Phone */
+@container st (max-width: 640px){
+  .st-wrap{padding-inline:20px}
+  .st-nav{padding:12px 16px}
+  .st-nav .sk-logo-text{font-size:18px}
+  .st-nav .st-btn-sm{padding:9px 14px;font-size:13px}
+  .st-hero{padding-top:44px}
+  .st-h{font-size:36px}
+  .st-h1{font-size:48px}
+  .st-sub{font-size:17px}
+  .st-hero-art{height:440px;margin-top:40px}
+  .st-arch-l,.st-arch-r{width:40%}
+  .st-arch-l{left:-4%}
+  .st-arch-r{right:-4%}
+  .st-hero-phone{width:200px;bottom:-40px}
+  .st-float{font-size:12.5px;padding:8px 12px}
+  .st-float.f2{display:none}
+  .st-spin{width:90px;height:90px;right:0;top:-4%}
+  .st-spin b{width:40px;height:40px}
+  .st-band-i{font-size:22px}
+  .st-sec{padding:72px 0}
+  .st-stat{width:140px}
+  .st-stat-c{width:120px;height:120px}
+  .st-stat b{font-size:30px}
+  .st-orbit{border-radius:28px;margin-inline:8px}
+  .st-orbit-grid{grid-template-columns:1fr}
+  .st-reel-p{width:170px}
+  .st-polas{height:340px}
+  .st-story-q p{font-size:26px}
+  .st-reviews{columns:1}
+  .st-plans.n2{grid-template-columns:1fr}
+  .st-panel{padding:70px 22px 40px;border-radius:28px}
+  .st-sticker{right:6px}
+  .st-sticker-r{left:6px}
+}
+
+</style>
+</head>
+<body>
+<link rel="preload" as="image" href="https://repshealthgrowth.com/login/api/files/onboarding/b174cfc0-3be4-4804-864a-375879760d06.png"/><link rel="preload" as="image" href="https://repshealthgrowth.com/login/api/files/onboarding/152ff6ce-771f-45f6-b5dc-77d6d8966234.png"/><link rel="preload" as="image" href="https://repshealthgrowth.com/login/api/files/onboarding/77d577ed-5398-4436-a1b9-2f2522aed563.jpg"/><link rel="preload" as="image" href="https://repshealthgrowth.com/login/api/files/onboarding/77f16bc5-a5a8-4928-9459-dad00c0bfe34.png"/><div class="site sk st" style="--p:#521e27;--s:#f2e2d3;--ink:#141414;--on-p:#fff;--on-s:#0b0b0d;--fd:&#x27;Archivo&#x27;, &#x27;Arial Black&#x27;, sans-serif;--fs:108%;--fw:800;--tt:none;--fa:&#x27;Fraunces&#x27;, Georgia, serif"><div class="st-bar"><div class="sk-marquee "><div class="sk-track" style="--dur:42s"><div class="sk-run"><span class="st-bar-i">6 features in one app</span><span class="st-bar-i">3–5 days a week</span><span class="st-bar-i">30 min sessions</span><span class="st-bar-i">1500+ clients coached</span><span class="st-bar-i">7 days free</span></div><div class="sk-run" aria-hidden="true"><span class="st-bar-i">6 features in one app</span><span class="st-bar-i">3–5 days a week</span><span class="st-bar-i">30 min sessions</span><span class="st-bar-i">1500+ clients coached</span><span class="st-bar-i">7 days free</span></div></div></div></div><nav class="st-nav" aria-label="Ellena Fit Ltd menu"><div class="st-links"><span>What&#x27;s inside</span><span>Results</span><span>Pricing</span></div><span class="st-logo"><img class="sk-logo-img " src="https://repshealthgrowth.com/login/api/files/onboarding/b174cfc0-3be4-4804-864a-375879760d06.png" alt="Ellena Fit Ltd"/></span><div class="st-nav-r"><div class="st-links"><span>FAQ</span></div><span class="st-btn st-btn-sm">Start free trial</span></div></nav><section class="st-hero"><div class="st-blobs" aria-hidden="true"><i></i><i></i><i></i></div><div class="st-wrap st-hero-copy"><div class="st-proof"><span class="st-faces" aria-hidden="true"><i></i><i></i><i></i></span><span class="sk-stars" aria-label="5 stars">★★★★★</span><span>5 from 320+ reviews</span></div><h1 class="st-h st-h1"><em class="st-l1">Your strongest</em><span class="st-l2">self starts here.</span></h1><p class="st-sub">Ellena Fit Ltd brings your training, food and accountability into one place. Your first 7 days are free.</p><div class="st-ctas"><span class="st-btn">Start free trial</span><span class="st-btn st-btn-line">See what&#x27;s inside</span></div><p class="st-small">7 days free · Cancel anytime</p></div><div class="st-wrap st-hero-art"><div class="st-arch st-arch-l"><img class="sk-img " src="https://repshealthgrowth.com/login/api/files/onboarding/152ff6ce-771f-45f6-b5dc-77d6d8966234.png" alt="Hero photo of the coach"/></div><div class="st-hero-phone"><div class="sk-phone " style="--dur:15s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div class="st-arch st-arch-r"><img class="sk-img " src="https://repshealthgrowth.com/login/api/files/onboarding/77d577ed-5398-4436-a1b9-2f2522aed563.jpg" alt="Second photo"/></div><span class="st-float f0">✦ Workout plans</span><span class="st-float f1">◐ Meal plans</span><span class="st-float f2">❋ Weekly check-ins</span><div class="st-spin" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><path id="st-c_R_bj_" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs><text><textPath href="#st-c_R_bj_" textLength="289">ELLENA FIT LTD · ELLENA FIT LTD · </textPath></text></svg><b>↓</b></div></div></section><div class="sk-marquee st-band"><div class="sk-track" style="--dur:44s"><div class="sk-run"><span class="st-band-i">6 features in one app<b aria-hidden="true">✿</b></span><span class="st-band-i">3–5 days a week<b aria-hidden="true">✿</b></span><span class="st-band-i">30 min sessions<b aria-hidden="true">✿</b></span><span class="st-band-i">1500+ clients coached<b aria-hidden="true">✿</b></span><span class="st-band-i">7 days free<b aria-hidden="true">✿</b></span></div><div class="sk-run" aria-hidden="true"><span class="st-band-i">6 features in one app<b aria-hidden="true">✿</b></span><span class="st-band-i">3–5 days a week<b aria-hidden="true">✿</b></span><span class="st-band-i">30 min sessions<b aria-hidden="true">✿</b></span><span class="st-band-i">1500+ clients coached<b aria-hidden="true">✿</b></span><span class="st-band-i">7 days free<b aria-hidden="true">✿</b></span></div></div></div><section class="st-stats" aria-label="At a glance"><div class="st-wrap st-stats-row"><div class="st-stat sk-rv d0"><div class="st-stat-c"><b><span data-count="30 min">30 min</span></b></div><span>Session length</span></div><div class="st-stat sk-rv d1"><div class="st-stat-c"><b><span data-count="3–5">3–5</span></b></div><span>Days a week</span></div><div class="st-stat sk-rv d2"><div class="st-stat-c"><b><span data-count="Gym + home">Gym + home</span></b></div><span>Every plan</span></div><div class="st-stat sk-rv d3"><div class="st-stat-c"><b><span data-count="Qualified">Qualified</span></b></div><span>Level 3 + 4 Personal Trainer, Degree in Human Biology, Masters in Osteopathy</span></div></div></section><section id="about" class="st-sec"><div class="st-wrap st-split"><div class="st-about-art sk-rv"><div class="st-arch st-about-img"><img class="sk-img " src="https://repshealthgrowth.com/login/api/files/onboarding/77d577ed-5398-4436-a1b9-2f2522aed563.jpg" alt="Photo for the intro section"/></div><span class="st-sticker">30 min Session length</span></div><div class="sk-rv d1"><p class="st-kicker">What Ellena Fit Ltd is</p><h2 class="st-h "><em class="st-l1">Your training and</em><span class="st-l2">nutrition, together</span></h2><p class="st-p st-lead">Ellena Fit Ltd is built for a woman who wants to lose fat &amp; feel more confident. Has tried dieting before, no success. Struggles with consistency. Busy mums. Aged 23-50. Ellie writes the plans and you follow them, one session at a time.</p><p class="st-p">No spreadsheets, no second tracking app, no starting again every Monday. Just a plan that fits your week and keeps moving.</p><span class="st-btn">Start free trial</span></div></div></section><section id="inside" class="st-sec st-orbit" data-cycle="3800"><div class="st-wrap"><div class="st-head st-head-c sk-rv"><p class="st-kicker">What’s inside the membership</p><h2 class="st-h "><em class="st-l1">Everything.</em><span class="st-l2">One price.</span></h2><p class="st-intro">6 things you get from day one. Nothing is locked behind a higher tier.</p></div><div class="st-orbit-grid"><div class="st-col"><button type="button" data-ci="0" class="st-fc on" aria-pressed="true" data-spot=""><span class="st-fc-i" aria-hidden="true">✦</span><span class="st-fc-t">Workout plans</span><span class="st-fc-b">Structured gym or home sessions, 3–5 days a week, that progress as you do.</span></button><button type="button" data-ci="1" class="st-fc" aria-pressed="false" data-spot=""><span class="st-fc-i" aria-hidden="true">◐</span><span class="st-fc-t">Meal plans</span><span class="st-fc-b">Simple meals with targets set for you. Nothing banned, nothing weighed in shame.</span></button><button type="button" data-ci="2" class="st-fc" aria-pressed="false" data-spot=""><span class="st-fc-i" aria-hidden="true">❋</span><span class="st-fc-t">Weekly check-ins</span><span class="st-fc-b">Ellie checks in every week, so you are never doing it on your own.</span></button></div><div class="st-orbit-phone"><div class="st-halo" aria-hidden="true"></div><div data-cs="0" class="st-slide on" aria-hidden="false"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Workout plans in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div data-cs="1" class="st-slide" aria-hidden="true"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Meal plans in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>20 min</small></div></div></div></div></div></div><div data-cs="2" class="st-slide" aria-hidden="true"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Weekly check-ins in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Plan</b><span></span></div><div class="sk-mock-ring" style="--n:78%"><b>78%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div></div></div></div></div><div data-cs="3" class="st-slide" aria-hidden="true"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Habit tracking in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Progress</b><span></span></div><div class="sk-mock-ring" style="--n:88%"><b>88%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Ready</small></div></div></div></div></div></div><div data-cs="4" class="st-slide" aria-hidden="true"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Community group in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div data-cs="5" class="st-slide" aria-hidden="true"><div class="sk-phone " style="--dur:16s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="Progress photos in the app (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div></div></div></div></div></div><div class="st-col"><button type="button" data-ci="3" class="st-fc" aria-pressed="false" data-spot=""><span class="st-fc-i" aria-hidden="true">✿</span><span class="st-fc-t">Habit tracking</span><span class="st-fc-b">Water, steps and sleep in one place, with streaks that keep you going.</span></button><button type="button" data-ci="4" class="st-fc" aria-pressed="false" data-spot=""><span class="st-fc-i" aria-hidden="true">◎</span><span class="st-fc-t">Community group</span><span class="st-fc-b">A private group of people on the same plans, cheering each other on.</span></button><button type="button" data-ci="5" class="st-fc" aria-pressed="false" data-spot=""><span class="st-fc-i" aria-hidden="true">☼</span><span class="st-fc-t">Progress photos</span><span class="st-fc-b">See the change week by week, even when the scales are being stubborn.</span></button></div></div></div></section><section id="app" class="st-sec st-reel"><div class="st-wrap"><div class="st-head sk-rv"><h2 class="st-h "><em class="st-l1">Everything you need,</em><span class="st-l2">right there in your pocket.</span></h2><p class="st-intro">Every plan, meal and check-in lives in the Ellena Fit Ltd.</p></div></div><div class="sk-marquee st-phones"><div class="sk-track" style="--dur:60s"><div class="sk-run"><div class="st-reel-p r0"><div class="sk-phone " style="--dur:11s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div class="st-reel-p r1"><div class="sk-phone " style="--dur:15s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div></div></div></div></div><div class="st-reel-p r2"><div class="sk-phone " style="--dur:19s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Plan</b><span></span></div><div class="sk-mock-ring" style="--n:78%"><b>78%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div></div></div></div></div><div class="st-reel-p r0"><div class="sk-phone " style="--dur:11s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Progress</b><span></span></div><div class="sk-mock-ring" style="--n:88%"><b>88%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div></div></div></div></div><div class="st-reel-p r1"><div class="sk-phone " style="--dur:15s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div class="st-reel-p r2"><div class="sk-phone " style="--dur:19s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div></div></div></div></div></div><div class="sk-run" aria-hidden="true"><div class="st-reel-p r0"><div class="sk-phone " style="--dur:11s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div class="st-reel-p r1"><div class="sk-phone " style="--dur:15s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Workout plans</b><small>20 min</small></div></div></div></div></div></div><div class="st-reel-p r2"><div class="sk-phone " style="--dur:19s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Plan</b><span></span></div><div class="sk-mock-ring" style="--n:78%"><b>78%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div></div></div></div></div><div class="st-reel-p r0"><div class="sk-phone " style="--dur:11s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Progress</b><span></span></div><div class="sk-mock-ring" style="--n:88%"><b>88%</b><small>complete</small></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div></div></div></div></div><div class="st-reel-p r1"><div class="sk-phone " style="--dur:15s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>Today</b><span></span></div><div class="sk-mock-ring" style="--n:58%"><b>58%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div></div></div></div></div><div class="st-reel-p r2"><div class="sk-phone " style="--dur:19s"><div class="sk-notch" aria-hidden="true"></div><div class="sk-screen"><div class="sk-scroll sk-mock" role="img" aria-label="App screen (screenshot to be added)"><div class="sk-mock-top"><span></span><b>This week</b><span></span></div><div class="sk-mock-ring" style="--n:68%"><b>68%</b><small>complete</small></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>Day 3</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>20 min</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>Ready</small></div></div><div class="sk-mock-card"><i></i><div><b>Progress photos</b><small>4 of 6</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Community group</b><small>20 min</small></div></div><div class="sk-mock-card"><i></i><div><b>Habit tracking</b><small>Day 3</small></div></div><div class="sk-mock-card"><i></i><div><b>Weekly check-ins</b><small>Ready</small></div></div><div class="sk-mock-card hi"><i></i><div><b>Meal plans</b><small>4 of 6</small></div></div><div class="sk-mock-card"><i></i><div><b>Workout plans</b><small>20 min</small></div></div></div></div></div></div></div></div></div></section><section id="results" class="st-sec st-results"><div class="st-wrap"><div class="st-head st-head-c sk-rv"><p class="st-kicker">Results</p><h2 class="st-h "><em class="st-l1">Real people,</em><span class="st-l2">real results</span></h2><p class="st-intro">Different starting points, the same plans you would start on Monday.</p></div><div class="st-story sk-rv"><div class="st-polas"><figure class="st-pola a"><div class="sk-img sk-ph " role="img" aria-label="Before photo (to be added)"><span>Before photo</span></div><figcaption>Before</figcaption></figure><figure class="st-pola b"><div class="sk-img sk-ph " role="img" aria-label="After photo (to be added)"><span>After photo</span></div><figcaption>After · </figcaption></figure></div><blockquote class="st-story-q"><span class="sk-stars" aria-label="5 stars">★★★★★</span><p>“”</p><cite>, </cite></blockquote></div></div></section><section id="coach" class="st-sec st-coach"><div class="st-wrap st-split"><div class="sk-rv"><p class="st-kicker">Meet Ellie</p><h2 class="st-h "><em class="st-l1">I built this for</em><span class="st-l2">people like you</span></h2><p class="st-p st-lead">I’ve always had a passion for health and fitness, which led me to study Human Biology and Osteopathy before qualifying as a Personal Trainer. With nearly 10 years of experience in the fitness industry, I’ve made it my mission to help women lose body fat, build confidence and feel their absolute best. I believe fitness should enhance your life, not take over it, which is why my coaching focuses on sustainable results, balance and creating healthy habits that last.</p><p class="st-p">Today I write every plan in Ellena Fit Ltd and check in with members every week.</p><div class="st-coach-stats"><div><b>Qualified</b><span>Level 3 + 4 Personal Trainer, Degree in Human Biology, Masters in Osteopathy</span></div><div><b>11 yrs</b><span>Coaching in person and online</span></div><div><b>1500+</b><span>Clients coached</span></div></div><span class="st-btn st-btn-line">Follow Ellena_fit</span></div><div class="st-coach-art sk-rv d1"><div class="st-arch st-coach-img"><img class="sk-img " src="https://repshealthgrowth.com/login/api/files/onboarding/77f16bc5-a5a8-4928-9459-dad00c0bfe34.png" alt="Photo of the coach"/></div><span class="st-sticker st-sticker-r">Level 3 + 4 Personal Trainer, Degree in Human Biology, Masters in Osteopathy, coaching for 11 years</span></div></div></section><section id="pricing" class="st-sec st-pricing"><div class="st-wrap"><div class="st-head st-head-c sk-rv"><p class="st-kicker">Membership</p><h2 class="st-h "><em class="st-l1">If you&#x27;re waiting for a sign,</em><span class="st-l2">this is it</span></h2><p class="st-intro">Same everything on every plan. The longer you commit, the less you pay. The first 7 days are free on every plan.</p></div><div class="st-plans n3 st-plans-todo" role="note"><div class="st-plan"><p class="st-plan-name">Monthly</p><p class="st-price"><b>£–</b></p><p class="st-plan-inc">Pricing is added in the REPS launch setup</p></div><div class="st-plan"><p class="st-plan-name">Quarterly</p><p class="st-price"><b>£–</b></p><p class="st-plan-inc">Pricing is added in the REPS launch setup</p></div><div class="st-plan"><p class="st-plan-name">Annual</p><p class="st-price"><b>£–</b></p><p class="st-plan-inc">Pricing is added in the REPS launch setup</p></div></div><div class="st-trust"><span>✓ 7 days free on every plan</span><span>✓ Cancel anytime</span><span>✓ iOS &amp; Android</span></div></div></section><section id="faq" class="st-sec st-faq"><div class="st-wrap st-faq-wrap"><div class="st-head st-head-c sk-rv"><h2 class="st-h "><em class="st-l1">Everything</em><span class="st-l2">you&#x27;d ask</span></h2><p class="st-intro">Still unsure? Email <b>Ellie@ellenafit.com</b>.</p></div><div data-faq="" class="st-q open"><button type="button" aria-expanded="true"><span>What do I get with Ellena Fit Ltd?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Workout plans, Meal plans, Weekly check-ins, Habit tracking, Community group, all in one place.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>How does the 7 day free trial work?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Start any plan and the first 7 days are free. Cancel before then and you pay nothing.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>Can I cancel whenever I want?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Yes. Cancel in a couple of taps, with no emails or phone calls needed.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>I&#x27;m a complete beginner. Is this for me?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Yes. Every exercise has guidance and the plans start where you are.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>Do I need a gym membership?</span><i aria-hidden="true"></i></button><div class="st-a"><p>No. There are home plans that need little or no equipment.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>How much time do I need each week?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Plan for 3–5 sessions a week of around 30 min.</p></div></div><div data-faq="" class="st-q"><button type="button" aria-expanded="false"><span>What if I get stuck?</span><i aria-hidden="true"></i></button><div class="st-a"><p>Email Ellie@ellenafit.com and you&#x27;ll hear back within a day.</p></div></div></div></section><section id="guide" class="st-final"><div class="st-wrap"><div class="st-panel"><div class="st-blobs st-blobs-in" aria-hidden="true"><i></i><i></i><i></i></div><svg class="st-wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C150,60 300,0 450,30 C600,60 750,0 900,30 C1050,60 1200,0 1350,30 L1350,0 L0,0 Z"></path></svg><div class="st-final-join"><h2 class="st-h "><em class="st-l1">Your strongest</em><span class="st-l2">self starts here.</span></h2><p class="st-sub">7 days free · Cancel anytime</p><span class="st-btn st-btn-ink">Start free trial</span></div></div></div></section><footer class="st-foot"><div class="st-wrap st-foot-row"><div class="st-foot-brand"><span class="st-logo"><img class="sk-logo-img " src="https://repshealthgrowth.com/login/api/files/onboarding/b174cfc0-3be4-4804-864a-375879760d06.png" alt="Ellena Fit Ltd"/></span><p>Ellena Fit Ltd. Written and coached by Ellie.</p></div><div class="st-foot-links"><span>What&#x27;s inside</span><span>Results</span><span>Pricing</span><span>FAQ</span><span>Member login</span></div></div><div class="st-word" aria-hidden="true" style="font-size:7.9cqi">Ellena Fit Ltd</div><div class="st-wrap st-legal"><span>© 2026 Ellena Fit Ltd</span><span>Terms · Privacy · Cookies</span></div></footer></div>
+<script>
+/* Makes an exported website page work on its own, without React: scroll reveals, counting
+   numbers, the feature showcase, FAQ, before and after slider, countdown and the forms.
+   Added to the end of every page the dashboard saves as HTML. */
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canWatch = 'IntersectionObserver' in window;
+  var all = function (sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); };
+
+  // Sections fade in as they scroll into view.
+  all('.sk').forEach(function (root) {
+    if (reduce || !canWatch) return;
+    root.classList.add('sk-armed');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    all('.sk-rv', root).forEach(function (el) { io.observe(el); });
+  });
+
+  // "2,000+" counts up the first time it's seen.
+  all('[data-count]').forEach(function (el) {
+    var m = (el.getAttribute('data-count') || '').match(/^([^\d]*)([\d,.]+)(.*)$/);
+    if (!m || reduce || !canWatch) return;
+    var target = parseFloat(m[2].replace(/,/g, '')), dec = (m[2].split('.')[1] || '').length;
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      var t0 = performance.now();
+      (function tick(now) {
+        var k = Math.min(1, (now - t0) / 1400);
+        el.textContent = m[1] + (target * (1 - Math.pow(1 - k, 3))).toLocaleString('en-GB', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + m[3];
+        if (k < 1) requestAnimationFrame(tick);
+      })(t0);
+    }, { threshold: 0.4 });
+    io.observe(el);
+  });
+
+  // Feature showcases step through on a timer; hovering or clicking one holds it.
+  all('[data-cycle]').forEach(function (sec) {
+    var by = function (a) { return function (x, y) { return +x.getAttribute(a) - +y.getAttribute(a); }; };
+    var items = all('[data-ci]', sec).sort(by('data-ci')), slides = all('[data-cs]', sec).sort(by('data-cs'));
+    if (!items.length) return;
+    var ms = +sec.getAttribute('data-cycle') || 4200, at = 0, held = false, timer;
+    function show(n) {
+      at = n;
+      items.forEach(function (el, k) {
+        var on = k === n;
+        el.classList.toggle('on', on);
+        if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', on);
+        if (el.hasAttribute('aria-expanded')) el.setAttribute('aria-expanded', on);
+        var bar = el.querySelector('[class$="-bar"] i');
+        if (bar && on) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      });
+      slides.forEach(function (el, k) { el.classList.toggle('on', k === n); el.setAttribute('aria-hidden', k !== n); });
+    }
+    function run() { clearInterval(timer); if (!reduce && !held && items.length > 1) timer = setInterval(function () { show((at + 1) % items.length); }, ms); }
+    items.forEach(function (el, k) {
+      var pick = function () { held = true; clearInterval(timer); show(k); };
+      el.addEventListener('mouseenter', pick); el.addEventListener('focus', pick); el.addEventListener('click', pick);
+    });
+    sec.addEventListener('mouseleave', function () { held = false; run(); });
+    run();
+  });
+
+  // FAQ: one answer open at a time.
+  all('[data-faq]').forEach(function (q) {
+    var b = q.querySelector('button');
+    if (!b) return;
+    b.addEventListener('click', function () {
+      var open = !q.classList.contains('open');
+      all('[data-faq]', q.parentNode).forEach(function (o) { o.classList.remove('open'); var ob = o.querySelector('button'); if (ob) ob.setAttribute('aria-expanded', 'false'); });
+      if (open) { q.classList.add('open'); b.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+
+  // Drag to compare before and after.
+  all('[data-compare]').forEach(function (c) {
+    var r = c.querySelector('input[type=range]');
+    if (r) r.addEventListener('input', function () { c.style.setProperty('--at', r.value + '%'); });
+  });
+
+  // A soft light that follows the pointer across cards.
+  all('[data-spot]').forEach(function (el) {
+    el.addEventListener('mousemove', function (e) {
+      var b = el.getBoundingClientRect();
+      el.style.setProperty('--mx', ((e.clientX - b.left) / Math.max(b.width, 1)) * 100 + '%');
+      el.style.setProperty('--my', ((e.clientY - b.top) / Math.max(b.height, 1)) * 100 + '%');
+    });
+  });
+
+  // Days, hours and minutes until 8am on launch day.
+  all('[data-countdown]').forEach(function (el) {
+    var m = (el.getAttribute('data-countdown') || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return;
+    var at = new Date(+m[1], +m[2] - 1, +m[3], 8).getTime();
+    function tick() {
+      var left = Math.max(0, at - Date.now());
+      var v = { d: Math.floor(left / 864e5), h: Math.floor((left % 864e5) / 36e5), m: Math.floor((left % 36e5) / 6e4) };
+      all('[data-k]', el).forEach(function (b) { b.textContent = String(v[b.getAttribute('data-k')]).padStart(2, '0'); });
+    }
+    tick(); setInterval(tick, 30000);
+  });
+
+  // Forms send leads to the client's dashboard.
+  all('form[data-capture]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var body = { client: f.getAttribute('data-client'), source: f.getAttribute('data-source'), form: f.getAttribute('data-form'), page: f.getAttribute('data-page') || location.pathname };
+      all('input[name]', f).forEach(function (i) { body[i.name] = i.value; });
+      var btn = f.querySelector('button[type=submit]'), note = f.querySelector('[data-note]');
+      var done = function () { var p = document.createElement('p'); p.className = f.getAttribute('data-thanks-class') || ''; p.textContent = f.getAttribute('data-thanks') || 'Thanks!'; f.innerHTML = ''; f.appendChild(p); };
+      var ep = f.getAttribute('data-endpoint');
+      if (!ep) { done(); return; }
+      if (btn) btn.disabled = true;
+      fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { if (!r.ok) throw new Error(); done(); })
+        .catch(function () { if (btn) btn.disabled = false; if (note) note.textContent = 'That did not go through. Please try again.'; });
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
