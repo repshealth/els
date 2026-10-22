@@ -426,7 +426,18 @@ button.st-btn:disabled{opacity:.6}
 @media (max-width:1000px){.st-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.st-team{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}}
 @media (max-width:600px){.st-steps{grid-template-columns:1fr}}
-.st-stat-c b span{display:block;padding:0 12px;text-align:center;line-height:1.1}.st-stat-c b .st-stat-w{font-size:.62em;padding:0 14px}.st-team-cta{margin-top:40px}
+.st-stat-c b span{display:block;padding:0 12px;text-align:center;line-height:1.1}
+.st-stat{width:190px}.st-stat-c{width:164px;height:164px}
+.st-stat-c b .st-stat-w{font-size:19px;font-stretch:100%;letter-spacing:-.01em;line-height:1.15;padding:0 16px;overflow-wrap:anywhere}
+@media (max-width:700px){.st-stat{width:150px}.st-stat-c{width:128px;height:128px}.st-stat-c b .st-stat-w{font-size:14.5px;padding:0 12px}}
+/* Photo spots: a placeholder sits behind each photo and shows if it is missing */
+.st-arch:not(.st-arch-l):not(.st-arch-r),.st-team-img{position:relative}.st-arch,.st-team-img{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 8h3l2-2.5h6L17 8h3v11H4z' fill='none' stroke='%23521e27' stroke-opacity='.55' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='13.2' r='3.4' fill='none' stroke='%23521e27' stroke-opacity='.55' stroke-width='1.5'/%3E%3C/svg%3E") center calc(50% - 14px)/40px no-repeat,repeating-linear-gradient(135deg,color-mix(in srgb,var(--s) 45%,#fff) 0 14px,color-mix(in srgb,var(--s) 25%,#fff) 14px 28px)}
+.st-arch::before,.st-team-img::before{content:"Photo to be added";position:absolute;left:0;right:0;top:calc(50% + 22px);text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--p) 70%,transparent);z-index:0}
+.st-arch::after,.st-team-img::after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px dashed color-mix(in srgb,var(--p) 30%,transparent);z-index:0;pointer-events:none}
+.st-arch .sk-img,.st-team-img .sk-img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+.st-team-img.st-rx-ph::before,.st-team-img.st-rx-ph::after{display:none}
+.st-team-img.st-rx-ph{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--s) 45%,#fff) 0 14px,color-mix(in srgb,var(--s) 25%,#fff) 14px 28px)}
+.st-logo-txt{font-family:var(--fa);font-style:italic;font-size:22px;color:var(--p);white-space:nowrap}.st-team-cta{margin-top:40px}
 </style>
 </head>
 <body>
@@ -553,5 +564,5 @@ button.st-btn:disabled{opacity:.6}
 })();
 
 </script>
-</body>
+<script>(function(){function gone(i){if(i.classList.contains('sk-logo-img')){var t=document.createElement('span');t.className='st-logo-txt';t.textContent='Ellena Fit Coaching';i.replaceWith(t);}else{i.remove();}}document.querySelectorAll('img.sk-img,img.sk-logo-img').forEach(function(i){if(i.complete&&!i.naturalWidth){gone(i);}else{i.addEventListener('error',function(){gone(i);});}});})();</script></body>
 </html>
