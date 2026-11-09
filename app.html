@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Ellena Fit App</title>
 <meta name="description" content="Ellie's workouts, nutrition tracking, recipes and community in one app. Start your journey with the Ellena Fit app.">
+<link rel="icon" type="image/png" href="images/favicon.png"><link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap">
@@ -34,7 +35,8 @@ a{color:inherit}
 .nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo img{height:38px;width:auto}
+.logo img{height:44px;width:auto}
+.foot-brand{display:inline-flex;align-items:center;gap:12px}.foot-brand img{width:36px;height:36px}
 .nav-links{display:flex;gap:28px;font-weight:600;font-size:15px}
 .nav-links a{text-decoration:none;opacity:.8}.nav-links a:hover{opacity:1}
 .nav .btn{padding:11px 22px;font-size:14.5px}
@@ -196,7 +198,7 @@ footer a{text-decoration:none}
 
 <nav class="nav" id="top">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Ellena Fit Coaching home"><img src="https://repshealthgrowth.com/api/files/onboarding/b174cfc0-3be4-4804-864a-375879760d06.png" alt="Ellena Fit Coaching"></a>
+    <a class="logo" href="index.html" aria-label="Ellena Fit Coaching home"><img src="images/logo-wordmark.webp" alt="Ellena Fit Coaching" width="900" height="289"></a>
     <div class="nav-links"><a href="#features">Inside the app</a><a href="#pricing">Pricing</a><a href="#faq">FAQs</a></div>
     <a class="btn" href="#pricing">Join the app</a>
   </div>
@@ -364,7 +366,7 @@ footer a{text-decoration:none}
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Ellena Fit Coaching</span>
+    <span class="foot-brand"><img src="images/logo-icon.png" alt="" width="36" height="36">© 2026 Ellena Fit Coaching</span>
     <span><a href="index.html">Looking for 1:1 coaching? Apply here →</a></span>
   </div>
 </footer>
