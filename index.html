@@ -789,13 +789,13 @@ var r=document.querySelector('.st-rx-reviews'),m=document.querySelector('.st-rx-
 var ENDPOINT="https://dashboard.jolly-heart-2b8d.workers.dev/api/forms"; /* REPS dashboard: leads land in Ellie's CRM */
 var CLIENT="ellena-fit-ltd";
 var WHATSAPP="447765337805"; /* Ellie's WhatsApp, international format, digits only */
-var APP_LINK=""; /* Link to Ellie's recipe and workout app for people who say coaching is out of budget */
+var APP_LINK="app.html"; /* Link to Ellie's recipe and workout app for people who say coaching is out of budget */
 /* ------------------ */
 var f=document.querySelector('.ef-form');if(!f)return;
 var track=f.querySelector('.ef-track'),view=f.querySelector('.ef-view'),slides=[].slice.call(f.querySelectorAll('.ef-slide')),
  bar=f.querySelector('.ef-bar i'),cnt=f.querySelector('.ef-count'),back=f.querySelector('.ef-back'),
  Q=slides.filter(function(x){return /^\d+$/.test(x.dataset.i)&&x.dataset.i!=='0'}).length,cur=0,answers={},route='';
-if(APP_LINK)f.querySelector('.ef-app').href=APP_LINK;else{var ap=f.querySelector('.ef-app');ap.removeAttribute('target');ap.textContent='See inside the Ellena Fit app'}
+if(APP_LINK){var al=f.querySelector('.ef-app');al.href=APP_LINK;al.removeAttribute('target')}else{var ap=f.querySelector('.ef-app');ap.removeAttribute('target');ap.textContent='See inside the Ellena Fit app'}
 function idx(k){for(var i=0;i<slides.length;i++)if(slides[i].dataset.i===String(k))return i;return 0}
 function fit(){view.style.height=slides[cur].offsetHeight+'px'}
 function go(i,focus){cur=i;track.style.transform='translateX('+(-100*i)+'%)';
